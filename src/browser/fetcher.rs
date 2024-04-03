@@ -225,7 +225,18 @@ impl Fetcher {
         info!("Creating file for download: {}", &path.display());
         let mut file = OpenOptions::new().create(true).write(true).open(&path)?;
 
-        let resp = ureq::get(&url).call();
+        let resp = if let Ok(http_proxy)= env::var("http_proxy"){
+            println!("使用代理 {}",http_proxy);
+            let proxy = ureq::Proxy::new(http_proxy)?;
+            let agent = ureq::AgentBuilder::new()
+                .proxy(proxy)
+                .build();
+    
+            agent.get(&url).call()
+    
+        }else{
+            ureq::get(&url).call()
+        };
         io::copy(&mut resp?.into_reader(), &mut file)?;
 
         Ok(path)

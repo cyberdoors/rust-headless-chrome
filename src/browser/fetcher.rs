@@ -466,7 +466,7 @@ fn latest_revision() -> Result<String> {
             .call()?
             .into_string()
             .map_err(anyhow::Error::from)
-        };
+        }
         
     }
 
@@ -490,7 +490,7 @@ fn latest_revision() -> Result<String> {
             .call()?
             .into_string()
             .map_err(anyhow::Error::from)
-        };
+        }
         
     }
 
@@ -514,7 +514,7 @@ fn latest_revision() -> Result<String> {
             .call()?
             .into_string()
             .map_err(anyhow::Error::from)
-        };
+        }
         
     }
 
@@ -538,7 +538,7 @@ fn latest_revision() -> Result<String> {
             .call()?
             .into_string()
             .map_err(anyhow::Error::from)
-        };
+        }
         
     }
 }
